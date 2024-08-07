@@ -1,0 +1,32 @@
+/* app/components/SideMenu.module.css */
+.sideMenu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.5);
+    z-index: 1000;
+  }
+  
+  .closeButton {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    margin-bottom: 20px;
+  }
+  
+  .menuList {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .menuList li {
+    margin: 10px 0;
+  }
+  
