@@ -1,8 +1,9 @@
 // app/page.tsx
-'use client';
+"use client";
 
-import React, { useState } from 'react';
-import SideMenu from './components/SideMenu';
+import React, { useState } from "react";
+import SideMenu from "./components/SideMenu";
+import SideMenuButton from "../public/Side-menu-button.svg"
 
 export default function HomePage() {
   const [isMenuOpen, setMenuOpen] = useState(false);
@@ -13,9 +14,16 @@ export default function HomePage() {
 
   return (
     <div>
-      <button onClick={toggleMenu}>Open Menu</button>
+      <button onClick={toggleMenu}>
+        <SideMenuButton width={24}></SideMenuButton>
+      </button>
       <SideMenu isOpen={isMenuOpen} toggleMenu={toggleMenu} />
-      <main style={{ marginLeft: isMenuOpen ? '250px' : '0', transition: 'margin-left 0.3s' }}>
+      <main
+        style={{
+          marginLeft: isMenuOpen ? "0px" : "0",
+          transition: "margin-left 0.3s",
+        }}
+      >
         <h1>Welcome to the Home Page</h1>
         <p>This is your content</p>
       </main>
