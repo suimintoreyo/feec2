@@ -1,21 +1,27 @@
 // app/page.tsx
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SideMenu from "./components/SideMenu";
-import SideMenuButton from "../public/Side-menu-button.svg"
+import SideMenuButton from "../public/Side-menu-button.svg";
+import { initializeKeyListener } from "./keyPressLogic";
 
 export default function HomePage() {
   const [isMenuOpen, setMenuOpen] = useState(false);
 
   function toggleMenu() {
-    setMenuOpen(!isMenuOpen);
+    setMenuOpen((prev) => !prev); // 前の状態を反転させる
   }
+
+  useEffect(() => {
+    const removeListener = initializeKeyListener(toggleMenu); // Alt + M キーリスナーを初期化
+    return () => removeListener();  // コンポーネントのアンマウント時にリスナーを削除
+  }, []);
 
   return (
     <div>
       <button onClick={toggleMenu}>
-        <SideMenuButton width={24}></SideMenuButton>
+        <SideMenuButton width={24} />
       </button>
       <SideMenu isOpen={isMenuOpen} toggleMenu={toggleMenu} />
       <main
