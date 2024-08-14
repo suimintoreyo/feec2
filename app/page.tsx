@@ -2,30 +2,24 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import SideMenu from "./components/SideMenu";
-import SideMenuButton from "../public/Side-menu-button.svg";
+import Header from "./components/Header";
 import { initializeKeyListener } from "./keyPressLogic";
 
 export default function HomePage() {
   const [isMenuOpen, setMenuOpen] = useState(false);
 
   function toggleMenu() {
-    setMenuOpen((prev) => !prev); // 前の状態を反転させる
+    setMenuOpen((prev) => !prev);
   }
 
   useEffect(() => {
-    const removeListener = initializeKeyListener(toggleMenu); // Alt + M キーリスナーを初期化
-    return () => removeListener(); // コンポーネントのアンマウント時にリスナーを削除
+    const removeListener = initializeKeyListener(toggleMenu);
+    return () => removeListener();
   }, []);
 
   return (
     <div>
-      <div className="pageheader">
-        <button onClick={toggleMenu}>
-          <SideMenuButton width={24} />
-        </button>
-        <SideMenu isOpen={isMenuOpen} toggleMenu={toggleMenu} />
-      </div>
+      <Header isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
       <main
         style={{
           marginLeft: isMenuOpen ? "0px" : "0",
