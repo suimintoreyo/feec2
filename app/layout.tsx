@@ -14,7 +14,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  console.log('RootLayout component has been rendered'); // コンソールログを追加
+  console.log("RootLayout component has been rendered"); // コンソールログを追加
 
   return (
     <html lang="en">
@@ -22,9 +22,7 @@ export default function RootLayout({
         <title>My Next.js App</title>
       </head>
       <body className={inter.className}>
-        <header className="bg-blue-500 text-white p-4">
-          <h1>My Next.js App</h1>
-        </header>
+        <header className="bg-blue-500 text-white p-4"></header>
         <main className="p-4">{children}</main>
       </body>
     </html>

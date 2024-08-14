@@ -49,7 +49,7 @@ input {
   left: 0;                   /* 左端に配置 */
   width: 100%;               /* ヘッダーを画面幅いっぱいに広げる */
   height: 60px;              /* ヘッダーの高さを指定 */
-  background-color: #007bff; /* ヘッダーの背景色をブルーに設定 */
+  background-color: none;  /* ヘッダーの背景色を無しに設定 */
   color: white;              /* テキストカラーを白に */
   display: flex;             /* フレックスボックスレイアウトを使用 */
   justify-content: space-between; /* 子要素を左右に配置 */
