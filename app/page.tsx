@@ -20,7 +20,7 @@ export default function HomePage() {
 
   return (
     <div>
-      <div className="pageheder">
+      <div className="pageheader">
         <button onClick={toggleMenu}>
           <SideMenuButton width={24} />
         </button>
