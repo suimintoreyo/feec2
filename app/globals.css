@@ -24,14 +24,14 @@
 
 /* styles/globals.css */
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+  font-family: Arial, sans-serif;  /* フォントファミリーをArialに設定し、代替としてsans-serifを使用 */
+  background-color: #f0f0f0;      /* ページ全体の背景色を淡いグレー (#f0f0f0) に設定 */
+  margin: 0;                      /* ページの外側の余白をゼロに設定 */
+  padding: 0;                     /* ページ内側の余白をゼロに設定 */
+  display: flex;                  /* フレックスボックスレイアウトを使用して、子要素の配置を管理 */
+  justify-content: center;        /* 子要素を水平方向の中央に配置 */
+  align-items: center;            /* 子要素を垂直方向の中央に配置 */
+  height: 100vh;                  /* ビューポートの高さ全体を100%に設定 */
 }
 
 div {
