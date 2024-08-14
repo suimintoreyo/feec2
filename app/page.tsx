@@ -15,15 +15,17 @@ export default function HomePage() {
 
   useEffect(() => {
     const removeListener = initializeKeyListener(toggleMenu); // Alt + M キーリスナーを初期化
-    return () => removeListener();  // コンポーネントのアンマウント時にリスナーを削除
+    return () => removeListener(); // コンポーネントのアンマウント時にリスナーを削除
   }, []);
 
   return (
     <div>
-      <button onClick={toggleMenu}>
-        <SideMenuButton width={24} />
-      </button>
-      <SideMenu isOpen={isMenuOpen} toggleMenu={toggleMenu} />
+      <div className="pageheder">
+        <button onClick={toggleMenu}>
+          <SideMenuButton width={24} />
+        </button>
+        <SideMenu isOpen={isMenuOpen} toggleMenu={toggleMenu} />
+      </div>
       <main
         style={{
           marginLeft: isMenuOpen ? "0px" : "0",
