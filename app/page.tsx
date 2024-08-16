@@ -22,7 +22,9 @@ export default function HomePage() {
       <Header isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
       <main
         style={{
+
           marginLeft: isMenuOpen ? "0px" : "0",
+          marginTop: "70px",
           transition: "margin-left 0.3s",
         }}
       >
