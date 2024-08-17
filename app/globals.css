@@ -23,7 +23,6 @@
   }
 }
 
-/* styles/globals.css */
 body {
   font-family: Arial, sans-serif;  /* フォントファミリーをArialに設定し、代替としてsans-serifを使用 */
   background-color: #f0f0f0;      /* ページ全体の背景色を淡いグレー (#f0f0f0) に設定 */
@@ -44,6 +43,7 @@ input {
   padding: 0.5em;
 }
 
+/* components/Header.tsx */
 .pageheader {
   position: fixed;           /* ヘッダーを画面上部に固定 */
   top: 0;                    /* 上端に配置 */

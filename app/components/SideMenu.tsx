@@ -1,7 +1,8 @@
 // app/components/SideMenu.tsx
-import React from 'react';
-import { motion } from 'framer-motion';
-import styles from './SideMenu.module.css';
+import React from "react";
+import { motion } from "framer-motion";
+import styles from "./SideMenu.module.css";
+import SideMenuButton from "../../public/Side-menu-button.svg";
 
 type SideMenuProps = {
   isOpen: boolean;
@@ -12,11 +13,13 @@ const SideMenu: React.FC<SideMenuProps> = ({ isOpen, toggleMenu }) => {
   return (
     <motion.div
       className={styles.sideMenu}
-      initial={{ x: '-100%' }}
-      animate={{ x: isOpen ? 0 : '-100%' }}
-      transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+      initial={{ x: "-100%" }}
+      animate={{ x: isOpen ? 0 : "-100%" }}
+      transition={{ type: "spring", stiffness: 300, damping: 30 }}
     >
-      <button onClick={toggleMenu} className={styles.closeButton}>Close</button>
+      <button onClick={toggleMenu} className={styles.closeButton}>
+        <SideMenuButton width={24} />
+      </button>
       <ul className={styles.menuList}>
         <li>Menu Item 1</li>
         <li>Menu Item 2</li>
