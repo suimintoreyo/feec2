@@ -10,10 +10,14 @@ type SideMenuButtonProps = {
   direction: "left" | "right";
 };
 
-function SideMenuButton({ toggleMenu, direction }: SideMenuButtonProps): JSX.Element {
+function SideMenuButton({
+  toggleMenu,
+  direction,
+}: SideMenuButtonProps): JSX.Element {
   const [isHovered, setIsHovered] = useState(false);
 
-  const Icon = direction === "left" ? SideMenuButtonCloseIcon : SideMenuButtonOpenIcon;
+  const Icon =
+    direction === "left" ? SideMenuButtonCloseIcon : SideMenuButtonOpenIcon;
 
   return (
     <div

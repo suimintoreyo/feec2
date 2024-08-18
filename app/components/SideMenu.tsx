@@ -32,7 +32,7 @@ function SideMenu({ isOpen, toggleMenu }: SideMenuProps): JSX.Element {
       }}
     >
       <div className={styles.buttonWrapper}>
-        <SideMenuButton toggleMenu={toggleMenu} direction="left"/>
+        <SideMenuButton toggleMenu={toggleMenu} direction="left" />
       </div>
 
       <ul className={styles.menuList}>
