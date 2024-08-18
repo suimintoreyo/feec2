@@ -1,7 +1,8 @@
 // app/components/Header.tsx
 import React from "react";
-import SideMenuButton from "../../public/Side-menu-button.svg";
+import SideMenuButtonOpen from "../../public/Side-menu-button-open.svg";
 import SideMenu from "./SideMenu";
+import SideMenuButton from "./SideMenuButton";
 
 interface HeaderProps {
   isMenuOpen: boolean;
@@ -11,9 +12,7 @@ interface HeaderProps {
 export default function Header({ isMenuOpen, toggleMenu }: HeaderProps) {
   return (
     <div className="pageheader">
-      <button onClick={toggleMenu}>
-        <SideMenuButton width={24} />
-      </button>
+     <SideMenuButton toggleMenu={toggleMenu} direction="right"/>
       <SideMenu isOpen={isMenuOpen} toggleMenu={toggleMenu} />
     </div>
   );
