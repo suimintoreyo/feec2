@@ -4,6 +4,8 @@
 import React, { useState, useEffect } from "react";
 import Header from "./components/Header";
 import { initializeKeyListener } from "./keyPressLogic";
+import TypingGame from "./components/TypingGameF/TypingGame";
+import styles from "./Page.module.css";
 
 export default function HomePage() {
   const [isMenuOpen, setMenuOpen] = useState(false);
@@ -22,13 +24,16 @@ export default function HomePage() {
       <Header isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
       <main
         style={{
-          marginLeft: isMenuOpen ? "0px" : "0",
-          marginTop: "40px",
+          marginLeft: isMenuOpen ? "250px" : "0",
           transition: "margin-left 0.3s",
         }}
       >
-        <h1>Welcome to the Home Page</h1>
-        <p>This is your content</p>
+        <div className={styles.pageContents}>
+          <h1>Welcome to the Home Page</h1>
+          <p>This is your content</p>
+
+          <TypingGame />
+        </div>
       </main>
     </div>
   );
