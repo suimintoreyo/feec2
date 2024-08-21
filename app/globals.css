@@ -56,7 +56,6 @@ input {
   justify-content: space-between; /* 子要素を左右に配置 */
   align-items: center;       /* 子要素を垂直方向の中央に配置 */
   padding: 0 0px;           /* 左右のパディングを0pxに設定 */
-  box-shadow: 0 2px 0px rgba(0, 0, 0, 0.1); /* ボックスシャドウを適用して奥行きを追加 */
   z-index: 1000;             /* ヘッダーを他のコンテンツの上に表示 */
 }
 

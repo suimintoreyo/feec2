@@ -23,7 +23,7 @@ export default function HomePage() {
       <main
         style={{
           marginLeft: isMenuOpen ? "0px" : "0",
-          marginTop: "70px",
+          marginTop: "40px",
           transition: "margin-left 0.3s",
         }}
       >
