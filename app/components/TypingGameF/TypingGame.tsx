@@ -96,6 +96,7 @@ function TypingGame() {
               onChange={handleInputChange}
               disabled={!isGameActive}
             />
+            <Keyboard />
           </div>
         ) : (
           <div>
@@ -108,7 +109,7 @@ function TypingGame() {
             </ol>
           </div>
         )}
-        <Keyboard />
+        
       </div>
     </div>
   );
