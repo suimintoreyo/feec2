@@ -1,0 +1,18 @@
+/* TypingGame.module.css */
+.key {
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 2px;
+    background: #eee;
+    cursor: pointer;
+}
+
+.activeKey {
+    color: red;
+    animation: blink 0.5s linear;
+}
+
+@keyframes blink {
+    50% { color: red; }
+    100% { color: black; }
+}

@@ -1,32 +1,62 @@
-/* app/components/SideMenu.module.css */
 .sideMenu {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 250px;
-    height: 100%;
-    background-color: #ffffff;
-    color: rgb(0, 0, 0);
-    padding: 20px;
-    box-shadow: 2px 0 5px rgba(0,0,0,0.5);
-    z-index: 1000;
-  }
-  
-  .closeButton {
-    background: none;
-    border: none;
-    color: rgb(0, 0, 0);
-    font-size: 20px;
-    cursor: pointer;
-    margin-bottom: 20px;
-  }
-  
-  .menuList {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .menuList li {
-    margin: 10px 0;
-  }
-  
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100%;
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  padding: 0px;
+  box-shadow: 5px 0 10px #f0f0f0;
+  z-index: 1000;
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.hidden {
+  opacity: 0;
+  visibility: hidden;
+  transition: visibility 0s 0.3s, opacity 0.3s ease-in-out;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  color: rgb(0, 0, 0);
+  font-size: 20px;
+  cursor: pointer;
+  margin: 8px;
+  position: relative;
+}
+
+.menuList {
+  list-style: none;
+  padding: 0;
+}
+
+.menuList li {
+  margin: 10px 0;
+}
+
+.iconFade {
+  position: relative;
+  width: 24px;
+  height: 24px;
+}
+
+.iconContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* ボタンを左に寄せるためのスタイルを定義 */
+.buttonWrapper {
+  display: flex;
+  justify-content: flex-end; /* 左寄せ */
+}
+
+.buttonWrapper:hover .iconFade {
+  transform: translateY(0px);
+  transition: transform 0.3s ease-in-out;
+}

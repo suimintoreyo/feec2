@@ -1,7 +1,7 @@
 // app/keyConfig.ts
 export const keyConfig = {
-    openMenuKey: {
-        altKey: true,
-        key: 'm',
-    },
+  openMenuKey: {
+    altKey: true,
+    key: "m",
+  },
 };
