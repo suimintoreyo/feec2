@@ -2,38 +2,38 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import Header from "./components/Header";
+import SideMenu from "./components/SideMenu";
+import SideMenuButton from "../public/Side-menu-button.svg";
 import { initializeKeyListener } from "./keyPressLogic";
-import TypingGame from "./components/TypingGameF/TypingGame";
-import styles from "./Page.module.css";
 
 export default function HomePage() {
   const [isMenuOpen, setMenuOpen] = useState(false);
 
   function toggleMenu() {
-    setMenuOpen((prev) => !prev);
+    setMenuOpen((prev) => !prev); // 前の状態を反転させる
   }
 
   useEffect(() => {
-    const removeListener = initializeKeyListener(toggleMenu);
-    return () => removeListener();
+    const removeListener = initializeKeyListener(toggleMenu); // Alt + M キーリスナーを初期化
+    return () => removeListener(); // コンポーネントのアンマウント時にリスナーを削除
   }, []);
 
   return (
     <div>
-      <Header isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
+      <div className="pageheader">
+        <button onClick={toggleMenu}>
+          <SideMenuButton width={24} />
+        </button>
+        <SideMenu isOpen={isMenuOpen} toggleMenu={toggleMenu} />
+      </div>
       <main
         style={{
-          marginLeft: isMenuOpen ? "250px" : "0",
+          marginLeft: isMenuOpen ? "0px" : "0",
           transition: "margin-left 0.3s",
         }}
       >
-        <div className={styles.pageContents}>
-          <h1>Welcome to the Home Page</h1>
-          <p>This is your content</p>
-
-          <TypingGame />
-        </div>
+        <h1>Welcome to the Home Page</h1>
+        <p>This is your content</p>
       </main>
     </div>
   );

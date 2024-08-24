@@ -1,8 +1,9 @@
+/** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./components/**/*.{js,ts,jsx,tsx}', './pages/**/*.{js,ts,jsx,tsx}'],
-  darkMode: 'media', // `darkMode` オプションを 'media' に更新
+  content: [],
   theme: {
     extend: {},
   },
   plugins: [],
-};
+}
+

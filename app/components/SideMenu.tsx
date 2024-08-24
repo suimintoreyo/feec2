@@ -1,31 +1,22 @@
-import React, { useEffect } from "react";
-import { motion } from "framer-motion";
-import styles from "./SideMenu.module.css";
-import SideMenuButton from "./SideMenuButton";
+// app/components/SideMenu.tsx
+import React from 'react';
+import { motion } from 'framer-motion';
+import styles from './SideMenu.module.css';
 
 type SideMenuProps = {
   isOpen: boolean;
   toggleMenu: () => void;
 };
 
-function SideMenu({ isOpen, toggleMenu }: SideMenuProps): JSX.Element {
-  useEffect(() => {
-    if (!isOpen) {
-      // 追加のアニメーション管理が不要です。
-    }
-  }, [isOpen]);
-
+const SideMenu: React.FC<SideMenuProps> = ({ isOpen, toggleMenu }) => {
   return (
     <motion.div
-      className={`${styles.sideMenu} ${!isOpen ? styles.hidden : ''}`}
-      initial={{ x: "-100%" }}
-      animate={{ x: isOpen ? 0 : "-100%" }}
-      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+      className={styles.sideMenu}
+      initial={{ x: '-100%' }}
+      animate={{ x: isOpen ? 0 : '-100%' }}
+      transition={{ type: 'spring', stiffness: 300, damping: 30 }}
     >
-      <div className={styles.buttonWrapper}>
-        <SideMenuButton toggleMenu={toggleMenu} direction="left" />
-      </div>
-
+      <button onClick={toggleMenu} className={styles.closeButton}>Close</button>
       <ul className={styles.menuList}>
         <li>Menu Item 1</li>
         <li>Menu Item 2</li>
@@ -34,6 +25,6 @@ function SideMenu({ isOpen, toggleMenu }: SideMenuProps): JSX.Element {
       </ul>
     </motion.div>
   );
-}
+};
 
 export default SideMenu;
