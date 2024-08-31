@@ -1,8 +1,12 @@
-// Keyboard.tsx からの重要な部分
 import React, { useState, useEffect } from "react";
 import styles from "./Keyboard.module.css";
 
-export default function Keyboard() {
+interface KeyboardProps {
+  correctKey: string | null;
+  incorrectKey: string | null;
+}
+
+export default function Keyboard({ correctKey, incorrectKey }: KeyboardProps) {
   const [activeKey, setActiveKey] = useState<string | null>(null);
 
   const keyboardLayout = [
@@ -35,15 +39,20 @@ export default function Keyboard() {
   return (
     <div>
       {keyboardLayout.map((row, rowIndex) => (
-        <div key={rowIndex}>
+        <div key={rowIndex} className={styles.row}>
           {row.map((key) => (
             <span
               key={key}
               className={`${styles.key} ${
                 key === activeKey ? styles.activeKey : ""
+              } ${
+                key === correctKey ? styles.correctKey : ""
+              } ${
+                key === incorrectKey ? styles.incorrectKey : ""
               }`}
             >
               {key.toUpperCase()}
+              <div className={styles.underline}></div>
             </span>
           ))}
         </div>

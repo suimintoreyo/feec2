@@ -9,8 +9,9 @@ function TypingGame() {
   const [timer, setTimer] = useState(60);
   const [isGameActive, setIsGameActive] = useState(false);
   const [score, setScore] = useState(0);
-  const [highScores, setHighScores] = useState<number[]>([]);
   const [isScoreUpdated, setIsScoreUpdated] = useState(false);
+  const [correctKey, setCorrectKey] = useState<string | null>(null);
+  const [incorrectKey, setIncorrectKey] = useState<string | null>(null);
 
   // ゲームの初期化と単語の設定
   useEffect(function initializeWord() {
@@ -19,9 +20,9 @@ function TypingGame() {
 
   // タイマーの管理
   useEffect(() => {
-    let interval: number | undefined;  // Corrected type declaration
+    let interval: number | undefined;
     if (isGameActive && timer > 0) {
-      interval = window.setInterval(() => {  // Use window.setInterval for clarity
+      interval = window.setInterval(() => {
         setTimer((prevTimer) => prevTimer - 1);
       }, 1000);
     } else if (!isGameActive || timer === 0) {
@@ -43,16 +44,27 @@ function TypingGame() {
   // 入力処理
   function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
     const value = event.target.value;
+    const lastChar = value.slice(-1).toLowerCase();
+    const expectedChar = currentWord.typing.charAt(inputValue.length).toLowerCase();
+
+    if (lastChar === expectedChar) {
+      setCorrectKey(lastChar);
+      setIncorrectKey(null);
+    } else {
+      setIncorrectKey(lastChar);
+      setCorrectKey(null);
+    }
+
     setInputValue(value);
 
     if (value.toLowerCase() === currentWord.typing.toLowerCase()) {
-      setScore(function updateScore(prevScore) {
-        return prevScore + 1;
-      });
+      setScore((prevScore) => prevScore + 1);
       setIsScoreUpdated(true);
-      setTimeout(() => setIsScoreUpdated(false), 500); // アニメーション後にフラグをリセット
+      setTimeout(() => setIsScoreUpdated(false), 500);
       setInputValue("");
       setCurrentWord(words[Math.floor(Math.random() * words.length)]);
+      setCorrectKey(null);
+      setIncorrectKey(null);
     }
   }
 
@@ -62,21 +74,13 @@ function TypingGame() {
     setTimer(60);
     setScore(0);
     setCurrentWord(words[Math.floor(Math.random() * words.length)]);
+    setCorrectKey(null);
+    setIncorrectKey(null);
   }
 
   // ゲーム終了
   function endGame() {
     setIsGameActive(false);
-    updateHighScores(score);
-  }
-
-  // ハイスコアの更新
-  function updateHighScores(newScore: number) {
-    const updatedScores = [...highScores, newScore]
-      .sort((a, b) => b - a)
-      .slice(0, 5);
-    setHighScores(updatedScores);
-    localStorage.setItem("highScores", JSON.stringify(updatedScores));
   }
 
   return (
@@ -96,17 +100,11 @@ function TypingGame() {
               onChange={handleInputChange}
               disabled={!isGameActive}
             />
-            <Keyboard />
+            <Keyboard correctKey={correctKey} incorrectKey={incorrectKey} />
           </div>
         ) : (
           <div>
             <button onClick={startGame}>ゲームスタート</button>
-            <h2>リーダーボード</h2>
-            <ol>
-              {highScores.map((highScore, index) => (
-                <li key={index}>スコア: {highScore}</li>
-              ))}
-            </ol>
           </div>
         )}
         
