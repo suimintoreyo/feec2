@@ -5,7 +5,7 @@ import { words } from './words';  // 更新された words をインポート
 
 function TypingGame() {
   const [inputValue, setInputValue] = useState("");
-  const [currentWord, setCurrentWord] = useState({ display: "", typing: "" });
+  const [currentWord, setCurrentWord] = useState({ furigana: "", kanji: "", typing: "" });
   const [timer, setTimer] = useState(60);
   const [isGameActive, setIsGameActive] = useState(false);
   const [score, setScore] = useState(0);
@@ -40,7 +40,6 @@ function TypingGame() {
     };
   }, [isGameActive, timer]);
 
-  
   // 入力処理
   function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
     const value = event.target.value;
@@ -93,7 +92,8 @@ function TypingGame() {
             <p className={`${styles.score} ${isScoreUpdated ? styles.scoreUpdate : ""}`}>
               現在のスコア: {score}
             </p>
-            <p>単語: {currentWord.display}</p>
+            <p>フリガナ: {currentWord.furigana}</p>
+            <p>漢字交じり文: {currentWord.kanji}</p>
             <input
               type="text"
               value={inputValue}
@@ -107,7 +107,6 @@ function TypingGame() {
             <button onClick={startGame}>ゲームスタート</button>
           </div>
         )}
-        
       </div>
     </div>
   );
