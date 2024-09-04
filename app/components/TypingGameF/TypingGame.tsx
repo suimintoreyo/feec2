@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "./TypingGame.module.css";
 import Keyboard from './Keyboard';
-import { words } from './words';  // 更新された words をインポート
+import { words } from './words';
 
 function TypingGame() {
   const [inputValue, setInputValue] = useState("");
@@ -13,12 +13,13 @@ function TypingGame() {
   const [correctKey, setCorrectKey] = useState<string | null>(null);
   const [incorrectKey, setIncorrectKey] = useState<string | null>(null);
 
-  // ゲームの初期化と単語の設定
+  // 次に押すべきキーを取得
+  const nextKey = currentWord.typing.charAt(inputValue.length).toLowerCase();
+
   useEffect(function initializeWord() {
     setCurrentWord(words[Math.floor(Math.random() * words.length)]);
   }, []);
 
-  // タイマーの管理
   useEffect(() => {
     let interval: number | undefined;
     if (isGameActive && timer > 0) {
@@ -40,7 +41,6 @@ function TypingGame() {
     };
   }, [isGameActive, timer]);
 
-  // 入力処理
   function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
     const value = event.target.value;
     const lastChar = value.slice(-1).toLowerCase();
@@ -67,7 +67,6 @@ function TypingGame() {
     }
   }
 
-  // ゲーム開始
   function startGame() {
     setIsGameActive(true);
     setTimer(60);
@@ -77,7 +76,6 @@ function TypingGame() {
     setIncorrectKey(null);
   }
 
-  // ゲーム終了
   function endGame() {
     setIsGameActive(false);
   }
@@ -100,7 +98,7 @@ function TypingGame() {
               onChange={handleInputChange}
               disabled={!isGameActive}
             />
-            <Keyboard correctKey={correctKey} incorrectKey={incorrectKey} />
+            <Keyboard correctKey={correctKey} incorrectKey={incorrectKey} nextKey={nextKey} />
           </div>
         ) : (
           <div>

@@ -32,13 +32,18 @@
     100% { color: inherit; }
 }
 .correctKey .underline {
-    background-color: rgb(99, 255, 99); /* 正解の場合は緑色 */
+    background-color: rgb(65, 185, 65); /* 正解の場合は緑色 */
     transform: scaleX(1.2); /* 拡大アニメーション */
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .incorrectKey .underline {
-    background-color: rgb(255, 97, 97); /* 間違った場合は赤色 */
+    background-color: rgb(173, 74, 74); /* 間違った場合は赤色 */
     transform: scaleX(1.2); /* 拡大アニメーション */
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
+
+.nextKey {
+    color: rgb(41, 155, 175);
+  }
+  

@@ -4,9 +4,10 @@ import styles from "./Keyboard.module.css";
 interface KeyboardProps {
   correctKey: string | null;
   incorrectKey: string | null;
+  nextKey: string;
 }
 
-export default function Keyboard({ correctKey, incorrectKey }: KeyboardProps) {
+export default function Keyboard({ correctKey, incorrectKey, nextKey }: KeyboardProps) {
   const [activeKey, setActiveKey] = useState<string | null>(null);
 
   const keyboardLayout = [
@@ -49,6 +50,8 @@ export default function Keyboard({ correctKey, incorrectKey }: KeyboardProps) {
                 key === correctKey ? styles.correctKey : ""
               } ${
                 key === incorrectKey ? styles.incorrectKey : ""
+              } ${
+                key === nextKey ? styles.nextKey : ""
               }`}
             >
               {key.toUpperCase()}
