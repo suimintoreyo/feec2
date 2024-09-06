@@ -17,8 +17,10 @@ function TypingGame() {
           <div>
             <p>残り時間: {timer}秒</p>
             <p className={styles.score}>現在のスコア: {score}</p>
-            <p>フリガナ: {currentWord.furigana}</p>
-            <p>漢字交じり文: {currentWord.kanji}</p>
+            {/* フリガナ */}
+            <p>{currentWord.furigana}</p>
+            {/* 交じりテキスト */}
+            <p>{currentWord.kanji}</p>
             <Keyboard correctKey={correctKey} incorrectKey={incorrectKey} nextKey={nextKey} />
           </div>
         ) : (
