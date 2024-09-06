@@ -38,12 +38,12 @@
 }
 
 .incorrectKey .underline {
-    background-color: rgb(173, 74, 74); /* 間違った場合は赤色 */
+    background-color: rgb(218, 51, 9); /* 間違った場合は赤色 */
     transform: scaleX(1.2); /* 拡大アニメーション */
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .nextKey {
-    color: rgb(41, 155, 175);
+    color: rgb(241, 157, 32);
   }
   

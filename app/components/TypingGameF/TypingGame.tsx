@@ -1,5 +1,3 @@
-// TypingGame.tsx
-
 import React from "react";
 import styles from "./TypingGame.module.css";
 import Keyboard from './Keyboard';
@@ -12,7 +10,7 @@ function TypingGame() {
   return (
     <div className={styles.typingGameContainer}>
       <div>
-        <h1>タイピングゲーム</h1>
+        <h1 className={styles.title}>ゲームタイトル</h1>
         {isGameActive ? (
           <div>
             <p>残り時間: {timer}秒</p>
