@@ -1,18 +1,49 @@
-/* TypingGame.module.css */
 .key {
     display: inline-block;
     padding: 5px 10px;
     margin: 2px;
     background: #eee;
     cursor: pointer;
+    position: relative; /* 下線を相対位置で配置するために必要 */
+    font-weight: bold; /* 文字を太くする */
+    font-size: 20px; /* フォントサイズを大きくする */
+    border-radius: 8px; /* キー自体に丸みを帯びた角を追加 */
 }
 
-.activeKey {
-    color: red;
-    animation: blink 0.5s linear;
+.underline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px; /* 下線の太さ */
+    background-color: rgb(128, 128, 128); /* 下線のデフォルトの色 */
+    border-radius: 2px; /* 下線に丸みを帯びさせる */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* 色とサイズ変更にアニメーションを適用 */
+}
+
+/* アクティブキーに対する下線のスタイル */
+.activeKey .underline {
+    background-color: rgb(43, 230, 255); /* アクティブなキーの下線の色 */
+    transform: scaleX(1.2); /* アクティブ時に下線を拡大する */
 }
 
 @keyframes blink {
-    50% { color: red; }
-    100% { color: black; }
+    50% { color: inherit; }
+    100% { color: inherit; }
 }
+.correctKey .underline {
+    background-color: rgb(65, 185, 65); /* 正解の場合は緑色 */
+    transform: scaleX(1.2); /* 拡大アニメーション */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.incorrectKey .underline {
+    background-color: rgb(218, 51, 9); /* 間違った場合は赤色 */
+    transform: scaleX(1.2); /* 拡大アニメーション */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.nextKey {
+    color: rgb(241, 157, 32);
+  }
+  

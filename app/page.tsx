@@ -29,9 +29,10 @@ export default function HomePage() {
         }}
       >
         <div className={styles.pageContents}>
-          <h1>Welcome to the Home Page</h1>
-          <p>This is your content</p>
-
+          {
+            //         <h1>Welcome to the Home Page</h1>
+            //         <p>This is your content</p>
+          }
           <TypingGame />
         </div>
       </main>
