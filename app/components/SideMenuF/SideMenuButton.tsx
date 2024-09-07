@@ -1,9 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import styles from './SideMenu.module.css';
-import SideMenuButtonIcon from '../../public/Side-menu-button.svg';
-import SideMenuButtonCloseIcon from '../../public/Side-menu-button-close.svg';
-import SideMenuButtonOpenIcon from '../../public/Side-menu-button-open.svg';
+import SideMenuButtonIcon from '../../../public/Side-menu-button.svg';
+import SideMenuButtonCloseIcon from '../../../public/Side-menu-button-close.svg';
+import SideMenuButtonOpenIcon from '../../../public/Side-menu-button-open.svg';
 
 type SideMenuButtonProps = {
   toggleMenu: () => void;
