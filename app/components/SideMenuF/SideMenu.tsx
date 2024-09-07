@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"; // useStateをインポー�
 import { motion } from "framer-motion";
 import styles from "./SideMenu.module.css";
 import SideMenuButton from "./SideMenuButton";
-import Settings from "./Settings";
+import Settings from "../SettingsF/Settings";
 
 type SideMenuProps = {
   isOpen: boolean;
