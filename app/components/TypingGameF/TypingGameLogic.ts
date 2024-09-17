@@ -1,7 +1,7 @@
 // TypingGameLogic.ts
 
 import { useState, useEffect } from "react";
-import { words } from './words';
+import { generateWordList } from '../generateWordList'; // generateWordListをインポート
 
 export interface TypingGameState {
   currentWord: { furigana: string; kanji: string; typing: string };
@@ -14,6 +14,7 @@ export interface TypingGameState {
 }
 
 export function useTypingGameLogic() {
+  const [wordList, setWordList] = useState<{ furigana: string; kanji: string; typing: string }[]>([]); // 単語リストのステート
   const [currentWord, setCurrentWord] = useState({ furigana: "", kanji: "", typing: "" });
   const [typedIndex, setTypedIndex] = useState(0);
   const [score, setScore] = useState(0);
@@ -25,7 +26,10 @@ export function useTypingGameLogic() {
 
   // 初期化時および新しい単語をセットした時に、次のキーをセットする
   useEffect(function initializeWord() {
-    const newWord = words[Math.floor(Math.random() * words.length)];
+    const generatedWords = generateWordList(); // generateWordList() を呼び出す
+    setWordList(generatedWords); // 単語リストをステートにセット
+
+    const newWord = generatedWords[Math.floor(Math.random() * generatedWords.length)];
     setCurrentWord(newWord);
     setNextKey(newWord.typing.charAt(0).toLowerCase());  // 最初のキーをセット
   }, []);
@@ -63,7 +67,7 @@ export function useTypingGameLogic() {
         // 全ての文字をタイプした場合
         if (typedIndex + 1 === currentWord.typing.length) {
           setScore((prevScore) => prevScore + 1);
-          const newWord = words[Math.floor(Math.random() * words.length)];
+          const newWord = wordList[Math.floor(Math.random() * wordList.length)];
           setCurrentWord(newWord);
           setTypedIndex(0);
           setCorrectKey(null);
@@ -82,13 +86,13 @@ export function useTypingGameLogic() {
     return () => {
       window.removeEventListener("keydown", handleKeyPress);
     };
-  }, [isGameActive, currentWord, typedIndex]);
+  }, [isGameActive, currentWord, typedIndex, wordList]);
 
   function startGame() {
     setIsGameActive(true);
-    setTimer(60);
+    setTimer(180);
     setScore(0);
-    const newWord = words[Math.floor(Math.random() * words.length)];
+    const newWord = wordList[Math.floor(Math.random() * wordList.length)];
     setCurrentWord(newWord);
     setTypedIndex(0);
     setCorrectKey(null);

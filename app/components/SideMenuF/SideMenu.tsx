@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react"; // useStateをインポート
+// app/components/SideMenuF/SideMenu.tsx
+import React, { useState } from "react"; // React を正しくインポート
 import { motion } from "framer-motion";
 import styles from "./SideMenu.module.css";
 import SideMenuButton from "./SideMenuButton";
@@ -7,20 +8,18 @@ import Settings from "../SettingsF/Settings";
 type SideMenuProps = {
   isOpen: boolean;
   toggleMenu: () => void;
+  onMenuItemClick: (item: string) => void; // クリック時に呼び出す関数の型定義
 };
 
-function SideMenu({ isOpen, toggleMenu }: SideMenuProps): JSX.Element {
-  // 設定メニューの開閉を管理するためのstate
-  const [isSettingsOpen, setSettingsOpen] = useState(false);
-
-  useEffect(() => {
-    if (!isOpen) {
-      // 追加のアニメーション管理は不要
-    }
-  }, [isOpen]);
+function SideMenu({ isOpen, toggleMenu, onMenuItemClick }: SideMenuProps): JSX.Element {
+  const [isSettingsOpen, setSettingsOpen] = useState<boolean>(false); // 型パラメータを明示
 
   function toggleSettings() {
-    setSettingsOpen(!isSettingsOpen);
+    setSettingsOpen(prev => !prev); // ステートのトグル
+  }
+
+  function handleMenuItemClick(item: string) {
+    onMenuItemClick(item); // メニューアイテムがクリックされたときに関数を呼び出す
   }
 
   return (
@@ -35,10 +34,10 @@ function SideMenu({ isOpen, toggleMenu }: SideMenuProps): JSX.Element {
       </div>
 
       <ul className={styles.menuList}>
-        <li>Menu Item 1</li>
-        <li>Menu Item 2</li>
-        <li>Menu Item 3</li>
-        <li>Menu Item 4</li>
+        <li onClick={() => handleMenuItemClick("Menu Item 1")}>Menu Item 1</li>
+        <li onClick={() => handleMenuItemClick("Menu Item 2")}>Menu Item 2</li>
+        <li onClick={() => handleMenuItemClick("Menu Item 3")}>Menu Item 3</li>
+        <li onClick={() => handleMenuItemClick("Menu Item 4")}>Menu Item 4</li>
       </ul>
       <button onClick={toggleSettings}>設定</button>
       <Settings isOpen={isSettingsOpen} onClose={toggleSettings} />
