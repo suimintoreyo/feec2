@@ -1,4 +1,3 @@
-// app/components/SideMenuF/SideMenu.tsx
 import React, { useState } from "react"; // React を正しくインポート
 import { motion } from "framer-motion";
 import styles from "./SideMenu.module.css";

@@ -17,11 +17,9 @@
     font-weight: bold;
 }
 
-.messageList {
+.divider {
     width: 100%;
     max-width: 600px;
-    height: 60vh;
-    overflow-y: auto;
     background-color: #fff;
     border: 2px solid #ccc;
     border-radius: 8px;
@@ -29,12 +27,44 @@
     margin-bottom: 20px;
 }
 
+.messageList {
+    width: 100%;
+    height: 75px; /* 固定高さ */
+    overflow-y: auto; /* 縦方向のみスクロール可能 */
+    overflow-x: hidden; /* 横方向のスクロールを禁止 */
+    background-color: #fff;
+    border-bottom: 1px solid #ccc; /* メッセージとリストの間の区切り */
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+}
+
 .messageItem {
-    padding: 10px;
-    border-bottom: 1px solid #eee;
     font-size: 18px;
     font-weight: bold;
     color: #333;
+    text-align: center;
+}
+
+.wordList {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 6列 */
+    grid-gap: 10px; /* 単語間のスペース */
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    height: 200px; /* 固定高さ */
+    overflow-y: auto; /* 縦方向のみスクロール可能 */
+    overflow-x: hidden; /* 横方向のスクロールを禁止 */
+}
+
+.wordItem {
+    padding: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #818181;
+    text-align: center;
+    word-break: break-word; /* 単語が長すぎる場合に折り返す */
 }
 
 .form {
@@ -45,7 +75,7 @@
 }
 
 .inputField {
-    flex: 12; /* 12/13 の幅を占める */
+    flex: 12;
     padding: 12px;
     font-size: 18px;
     border: 2px solid #ccc;
@@ -54,8 +84,8 @@
     outline: none;
 }
 
-.submitButton {
-    flex: 1; /* 1/13 の幅を占める */
+.button {
+    flex: 1;
     padding: 12px;
     font-size: 18px;
     color: #fff;
@@ -63,16 +93,14 @@
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    margin-left: 5px;
 }
 
-.submitButton:hover {
+.button:hover {
     background-color: #ffbf34;
 }
 
-.submitButton:active {
+.button:active {
     background-color: #e64a19;
     transform: scale(0.95);
 }
