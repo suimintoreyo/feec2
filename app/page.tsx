@@ -8,15 +8,16 @@ import GameManager from './components/GameManager/GameManager';
 import GameEdit from './components/GameEdit/GameEdit';
 import SideMenu from "./components/SideMenu/SideMenu";
 import styles from "./Page.module.css";
+//import RegistrForm from './components/RegistrForm';
+import RegistrForm from './components/LoginForm';
+
 
 export default function HomePage() {
   const [isMenuOpen, setMenuOpen] = useState(false);
   const [isExpanded, setExpanded] = useState(false);
   const [currentScreen, setCurrentScreen] = useState<string>("TypingGame");
 
-  function toggleMenu() {
-    setMenuOpen((prev) => !prev);
-  }
+
 
   function handleMenuItemClick(item: string) {
     if (item === "Menu Item 1") {
@@ -75,5 +76,6 @@ export default function HomePage() {
         </div>
       </main>
     </div>
+
   );
 }

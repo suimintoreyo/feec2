@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+
+import React, { useEffect, useState } from "react"; // useStateをインポート
+
 import { motion } from "framer-motion";
 import styles from "./SideMenu.module.css";
 import SideMenuButton from "./SideMenuButton";
@@ -7,6 +9,7 @@ import Settings from "../Settings/Settings";
 type SideMenuProps = {
   isOpen: boolean;
   toggleMenu: () => void;
+
   onMenuItemClick: (item: string) => void;
   isExpanded: boolean;
   setExpanded: (expanded: boolean) => void; // 拡張状態を変更する関数を追加
@@ -37,15 +40,19 @@ function SideMenu({ isOpen, toggleMenu, onMenuItemClick, isExpanded, setExpanded
       setGameTitleVisible((prev) => !prev);
     }
     onMenuItemClick(item);
+
   }
 
   return (
     <motion.div
+
       className={`${styles.sideMenu} ${isExpanded ? styles.expanded : ""} ${!isOpen ? styles.hidden : ""}`}
+
       initial={{ x: "-100%" }}
       animate={{ x: isOpen ? 0 : "-100%" }}
       transition={{ type: "spring", stiffness: 300, damping: 30 }}
     >
+
       <div className={`${styles.buttonWrapper} ${styles.fixedContent}`}>
         <SideMenuButton toggleMenu={handleToggleMenu} direction="left" />
       </div>
@@ -81,6 +88,7 @@ function SideMenu({ isOpen, toggleMenu, onMenuItemClick, isExpanded, setExpanded
       <button onClick={toggleSettings} className={styles.settingsButton}>
         設定
       </button>
+
 
       <Settings isOpen={isSettingsOpen} onClose={toggleSettings} />
     </motion.div>
