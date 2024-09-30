@@ -9,9 +9,10 @@ type SideMenuProps = {
   toggleMenu: () => void;
   onMenuItemClick: (item: string) => void;
   isExpanded: boolean;
+  setExpanded: (expanded: boolean) => void; // 拡張状態を変更する関数を追加
 };
 
-function SideMenu({ isOpen, toggleMenu, onMenuItemClick, isExpanded }: SideMenuProps): JSX.Element {
+function SideMenu({ isOpen, toggleMenu, onMenuItemClick, isExpanded, setExpanded }: SideMenuProps): JSX.Element {
   const [isSettingsOpen, setSettingsOpen] = useState<boolean>(false);
   const [isGameTitleVisible, setGameTitleVisible] = useState<boolean>(false);
 
@@ -19,10 +20,18 @@ function SideMenu({ isOpen, toggleMenu, onMenuItemClick, isExpanded }: SideMenuP
     setSettingsOpen((prev) => !prev);
   }
 
+  // サイドメニューを閉じるときに全ての状態を初期化
+  function handleToggleMenu() {
+    setSettingsOpen(false); // 設定画面を閉じる
+    setGameTitleVisible(false); // ゲームタイトルを非表示に戻す
+    setExpanded(false); // 拡張状態を元に戻す
+    toggleMenu(); // サイドメニューを閉じる
+  }
+
   function handleMenuItemClick(item: string) {
     if (item === "Menu Item 1" || item === "Menu Item 2") {
       setGameTitleVisible(false);
-      toggleMenu();
+      handleToggleMenu();
     }
     if (item === "Menu Item 3") {
       setGameTitleVisible((prev) => !prev);
@@ -32,13 +41,13 @@ function SideMenu({ isOpen, toggleMenu, onMenuItemClick, isExpanded }: SideMenuP
 
   return (
     <motion.div
-      className={`${styles.sideMenu} ${isExpanded ? styles.expanded : ''} ${!isOpen ? styles.hidden : ''}`}
+      className={`${styles.sideMenu} ${isExpanded ? styles.expanded : ""} ${!isOpen ? styles.hidden : ""}`}
       initial={{ x: "-100%" }}
       animate={{ x: isOpen ? 0 : "-100%" }}
       transition={{ type: "spring", stiffness: 300, damping: 30 }}
     >
       <div className={`${styles.buttonWrapper} ${styles.fixedContent}`}>
-        <SideMenuButton toggleMenu={toggleMenu} direction="left" />
+        <SideMenuButton toggleMenu={handleToggleMenu} direction="left" />
       </div>
 
       <ul className={`${styles.menuList} ${styles.fixedContent}`}>
@@ -54,21 +63,25 @@ function SideMenu({ isOpen, toggleMenu, onMenuItemClick, isExpanded }: SideMenuP
       </ul>
 
       {isGameTitleVisible && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          className={`${styles.gameTitle} ${styles.fixedContent}`}
-        >
-          <h3>ゲームタイトル</h3>
-        </motion.div>
-      )}
+  <motion.div
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{ duration: 0.5 }}
+    className={`${styles.gameTitle} ${styles.fixedContent}`}
+  >
+    <h3>ゲームタイトル 1</h3>
+    <h3>ゲームタイトル 2</h3>
+    <h3>ゲームタイトル 3</h3>
+    <h3>ゲームタイトル 4</h3>
+  </motion.div>
+)}
+
 
       {/* Settings ボタンに settingsButton クラスを追加 */}
       <button onClick={toggleSettings} className={styles.settingsButton}>
         設定
       </button>
-      
+
       <Settings isOpen={isSettingsOpen} onClose={toggleSettings} />
     </motion.div>
   );

@@ -71,10 +71,14 @@
 }
 
 .gameTitle {
+  display: grid; /* グリッドレイアウトを使用 */
+  grid-template-columns: repeat(2, 1fr); /* 2列に設定 */
+  gap: 10px; /* 列間の隙間を調整 */
   overflow: hidden;
   margin: 10px 0;
   text-align: center;
 }
+
 
 /* Settings ボタンのスタイルをメニュー項目に合わせる */
 .settingsButton {

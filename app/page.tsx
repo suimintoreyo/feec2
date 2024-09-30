@@ -1,4 +1,4 @@
-"use client";
+"use client"; // 追加: クライアントコンポーネントとしてマーク
 
 import React, { useState, useEffect } from "react";
 import Header from "./components/Header";
@@ -11,7 +11,7 @@ import styles from "./Page.module.css";
 
 export default function HomePage() {
   const [isMenuOpen, setMenuOpen] = useState(false);
-  const [isExpanded, setExpanded] = useState(false); // 追加
+  const [isExpanded, setExpanded] = useState(false);
   const [currentScreen, setCurrentScreen] = useState<string>("TypingGame");
 
   function toggleMenu() {
@@ -22,13 +22,13 @@ export default function HomePage() {
     if (item === "Menu Item 1") {
       setCurrentScreen("GameManager");
       setMenuOpen(false);
-      setExpanded(false); // メニューを閉じる時は拡張状態をリセット
+      setExpanded(false);
     } else if (item === "Menu Item 2") {
       setCurrentScreen("GameEdit");
       setMenuOpen(false);
-      setExpanded(false); // メニューを閉じる時は拡張状態をリセット
+      setExpanded(false);
     } else if (item === "Menu Item 3") {
-      setExpanded(prev => !prev); // メニューを拡張またはリセット
+      setExpanded((prev) => !prev);
     }
   }
 
@@ -61,11 +61,12 @@ export default function HomePage() {
         isOpen={isMenuOpen}
         toggleMenu={toggleMenu}
         onMenuItemClick={handleMenuItemClick}
-        isExpanded={isExpanded} // 追加
+        isExpanded={isExpanded}
+        setExpanded={setExpanded} // 追加: setExpanded を渡す
       />
       <main
         style={{
-          marginLeft: isMenuOpen ? (isExpanded ? "300px" : "250px") : "0", // サイドメニューの幅に応じたマージン設定
+          marginLeft: isMenuOpen ? (isExpanded ? "300px" : "250px") : "0",
           transition: "margin-left 0.3s",
         }}
       >
