@@ -1,7 +1,7 @@
 // app/components/Header.tsx
 import React from "react";
-import SideMenu from "./SideMenuF/SideMenu";
-import SideMenuButton from "./SideMenuF/SideMenuButton";
+import SideMenu from "./SideMenu/SideMenu";
+import SideMenuButton from "./SideMenu/SideMenuButton";
 
 interface HeaderProps {
   isMenuOpen: boolean;
