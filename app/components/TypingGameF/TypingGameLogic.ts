@@ -1,7 +1,6 @@
-// TypingGameLogic.ts
-
 import { useState, useEffect } from "react";
-import { words } from './words';
+import { generateWordList } from '../WordList';
+import { romajiTable } from '../Table/table'; // Import the table
 
 export interface TypingGameState {
   currentWord: { furigana: string; kanji: string; typing: string };
@@ -14,23 +13,30 @@ export interface TypingGameState {
 }
 
 export function useTypingGameLogic() {
+  const [wordList, setWordList] = useState<{ furigana: string; kanji: string; typing: string }[]>([]);
   const [currentWord, setCurrentWord] = useState({ furigana: "", kanji: "", typing: "" });
   const [typedIndex, setTypedIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [correctKey, setCorrectKey] = useState<string | null>(null);
   const [incorrectKey, setIncorrectKey] = useState<string | null>(null);
-  const [nextKey, setNextKey] = useState<string>(""); // 次にタイプすべきキー
+  const [nextKey, setNextKey] = useState<string>(""); 
   const [isGameActive, setIsGameActive] = useState(false);
   const [timer, setTimer] = useState(60);
 
-  // 初期化時および新しい単語をセットした時に、次のキーをセットする
+  // ローマ字の変換ルールはtable.tsxから参照
+  const romajiVariations = (char: string) => {
+    return romajiTable[char] || [char]; 
+  };
+
   useEffect(function initializeWord() {
-    const newWord = words[Math.floor(Math.random() * words.length)];
+    const generatedWords = generateWordList();
+    setWordList(generatedWords);
+
+    const newWord = generatedWords[Math.floor(Math.random() * generatedWords.length)];
     setCurrentWord(newWord);
-    setNextKey(newWord.typing.charAt(0).toLowerCase());  // 最初のキーをセット
+    setNextKey(newWord.typing.charAt(0).toLowerCase());
   }, []);
 
-  // タイマー管理
   useEffect(() => {
     let interval: number | undefined;
     if (isGameActive && timer > 0) {
@@ -47,32 +53,42 @@ export function useTypingGameLogic() {
     };
   }, [isGameActive, timer]);
 
-  // キー押下時のロジック
   useEffect(() => {
     function handleKeyPress(event: KeyboardEvent) {
       if (!isGameActive) return;
 
       const key = event.key.toLowerCase();
-      const expectedChar = currentWord.typing.charAt(typedIndex).toLowerCase();
+      const expectedSegment = currentWord.typing.substring(typedIndex).toLowerCase();
+      const maxLength = Math.min(3, expectedSegment.length);
 
-      if (key === expectedChar) {
-        setCorrectKey(key);
-        setIncorrectKey(null);
-        setTypedIndex((prevIndex) => prevIndex + 1);
+      let matched = false;
 
-        // 全ての文字をタイプした場合
-        if (typedIndex + 1 === currentWord.typing.length) {
-          setScore((prevScore) => prevScore + 1);
-          const newWord = words[Math.floor(Math.random() * words.length)];
-          setCurrentWord(newWord);
-          setTypedIndex(0);
-          setCorrectKey(null);
+      for (let length = 1; length <= maxLength; length++) {
+        const expectedChar = expectedSegment.substring(0, length);
+        const expectedCharVariations = romajiVariations(expectedChar);
+
+        if (expectedCharVariations.includes(key)) {
+          matched = true;
+          setCorrectKey(key);
           setIncorrectKey(null);
-          setNextKey(newWord.typing.charAt(0).toLowerCase());  // 新しい単語の最初のキーをセット
-        } else {
-          setNextKey(currentWord.typing.charAt(typedIndex + 1).toLowerCase()); // 次のキーを更新
+          setTypedIndex((prevIndex) => prevIndex + length);
+
+          if (typedIndex + length === currentWord.typing.length) {
+            setScore((prevScore) => prevScore + 1);
+            const newWord = wordList[Math.floor(Math.random() * wordList.length)];
+            setCurrentWord(newWord);
+            setTypedIndex(0);
+            setCorrectKey(null);
+            setIncorrectKey(null);
+            setNextKey(newWord.typing.charAt(0).toLowerCase());
+          } else {
+            setNextKey(currentWord.typing.charAt(typedIndex + length).toLowerCase());
+          }
+          break;
         }
-      } else {
+      }
+
+      if (!matched) {
         setIncorrectKey(key);
         setCorrectKey(null);
       }
@@ -82,18 +98,18 @@ export function useTypingGameLogic() {
     return () => {
       window.removeEventListener("keydown", handleKeyPress);
     };
-  }, [isGameActive, currentWord, typedIndex]);
+  }, [isGameActive, currentWord, typedIndex, wordList]);
 
   function startGame() {
     setIsGameActive(true);
-    setTimer(60);
+    setTimer(180);
     setScore(0);
-    const newWord = words[Math.floor(Math.random() * words.length)];
+    const newWord = wordList[Math.floor(Math.random() * wordList.length)];
     setCurrentWord(newWord);
     setTypedIndex(0);
     setCorrectKey(null);
     setIncorrectKey(null);
-    setNextKey(newWord.typing.charAt(0).toLowerCase());  // 最初のキーをセット
+    setNextKey(newWord.typing.charAt(0).toLowerCase());
   }
 
   function endGame() {
