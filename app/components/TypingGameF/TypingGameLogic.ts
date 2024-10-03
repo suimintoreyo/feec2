@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { generateWordList } from '../WordList';
-import { romajiTable } from '../Table/table'; // Import the table
+import { romajiTable } from './Table/table'; // Import the table
 
 export interface TypingGameState {
   currentWord: { furigana: string; kanji: string; typing: string };
