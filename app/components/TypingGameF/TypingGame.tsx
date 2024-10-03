@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./TypingGame.module.css";
-import Keyboard from './KeyboardF/Keyboard';
+import Keyboard from './Keyboard/Keyboard';
 import { useTypingGameLogic } from './TypingGameLogic';
 
 function TypingGame() {

@@ -1,0 +1,108 @@
+.sideMenu {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 250px; /* デフォルトの幅 */
+
+  height: 100%;
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  padding: 0px;
+  box-shadow: 5px 0 10px #f0f0f0;
+  z-index: 1000;
+  opacity: 1;
+
+  transition: opacity 0.3s ease-in-out, width 0.3s ease;
+}
+
+.expanded {
+  width: 400px; /* 拡張時の幅 */
+
+}
+
+.hidden {
+  opacity: 0;
+  visibility: hidden;
+  transition: visibility 0s 0.3s, opacity 0.3s ease-in-out;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  color: rgb(0, 0, 0);
+  font-size: 20px;
+  cursor: pointer;
+  margin: 8px;
+  position: relative;
+}
+
+.menuList {
+  list-style: none;
+  padding: 0;
+
+
+  margin: 20px 0;
+  text-align: left;
+  transition: text-align 0.3s ease, padding-left 0.3s ease;
+}
+
+.menuList li {
+  padding: 10px 80px; /* デフォルトのパディング（左寄せ用） */
+  cursor: pointer;
+  white-space: nowrap;
+  transition: padding 0.3s ease, margin 0.3s ease;
+
+}
+
+.iconFade {
+  position: relative;
+  width: 24px;
+  height: 24px;
+}
+
+.iconContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+
+.buttonWrapper {
+  display: flex;
+  justify-content: flex-end; /* 左寄せ */
+}
+
+.buttonWrapper:hover .iconFade {
+  transform: translateY(0px);
+  transition: transform 0.3s ease-in-out;
+}
+
+.gameTitle {
+  display: grid; /* グリッドレイアウトを使用 */
+  grid-template-columns: repeat(2, 1fr); /* 2列に設定 */
+  gap: 10px; /* 列間の隙間を調整 */
+  overflow: hidden;
+  margin: 10px 0;
+  text-align: center;
+}
+
+
+/* Settings ボタンのスタイルをメニュー項目に合わせる */
+.settingsButton {
+  padding: 10px 80px; /* Menu Item と同じパディングを設定 */
+  margin: 10px 0;
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: #333;
+  font-size: 16px;
+  text-align: left;
+  transition: padding 0.3s ease, margin 0.3s ease;
+}
+
+.expanded .settingsButton {
+  padding: 10px 120px; /* 拡張時のスタイル調整 */
+  font-size: 18px;
+}
+

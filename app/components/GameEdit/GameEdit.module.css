@@ -1,0 +1,110 @@
+.pageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  padding-top: 50px;
+  position: relative;
+}
+
+.pageTitle {
+  font-size: 32px;
+  color: #333;
+  margin-bottom: 30px;
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+.container {
+  width: 100%;
+  max-width: 800px;
+  min-width: 1000px;
+  padding: 20px;
+  background-color: #f0f0f0;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  margin-top: 100px;
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.optionRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0;
+}
+
+.optionLabel {
+  font-size: 16px;
+  color: #333;
+  cursor: pointer;
+}
+
+.input {
+  padding: 5px;
+  font-size: 14px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.saveButton, .cancelButton {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-right: 5px;
+}
+
+.cancelButton {
+  background-color: #ff4d4d;
+}
+
+.saveButton:hover {
+  background-color: #45a049;
+}
+
+.cancelButton:hover {
+  background-color: #ff3333;
+}
+
+.deleteButton {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.deleteButton:hover {
+  background-color: #ff3333;
+}
+
+.divider {
+  border: 0;
+  height: 1px;
+  background-color: #ccc;
+  margin: 24px 0;
+}
+
+.optionRow:not(:last-child) + .divider {
+  display: block;
+}
+
+.errorMessage {
+  color: red;
+  margin-top: 5px;
+  font-size: 12px;
+  text-align: left; /* 左寄せ */
+}

@@ -1,0 +1,75 @@
+.login-container {
+  max-width: 800px;
+  display: flex;
+  justify-content: space-between; /* 左右にアイテムを分ける */
+  align-items: stretch; /* 子要素の高さを揃える */
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-section {
+  width: 47%; /* ログイン部分を左に配置 */
+}
+
+.additional-section {
+  width: 47%; /* 右側の新しい項目 */
+  padding-left: 20px;
+}
+
+.login-form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.login-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #0070f3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.login-button:hover {
+  background-color: #005bb5;
+}
+
+.login-font {
+  font-weight: bold;
+  color: #ffbf34; /* 薄黄色 */
+  text-shadow: 2px 2px 0px var(--titleforntshadow-color),
+    /* 濃い黄色の縁 */ -2px -2px 0px var(--titleforntshadow-color),
+    2px -2px 0px var(--titleforntshadow-color),
+    -2px 2px 0px var(--titleforntshadow-color);
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+/* 区切り線 */
+.divider {
+  width: 3px; /* 区切り線の太さ */
+  background-color: #e6e6e6; /* 区切り線の色 */
+  height: 100%; /* 縦方向に全体に表示 */
+  min-height: 350px; /* 最小の高さを設定 */
+  display: inline-block; /* inline-blockにして幅が維持されるようにする */
+}
