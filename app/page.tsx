@@ -16,6 +16,7 @@ export default function HomePage() {
   const [isMenuOpen, setMenuOpen] = useState(false);
   const [isExpanded, setExpanded] = useState(false);
   const [currentScreen, setCurrentScreen] = useState<string>("TypingGame");
+  const toggleMenu = () => setMenuOpen((prev) => !prev);
 
 
 
