@@ -1,18 +1,16 @@
-
-import React, { useEffect, useState } from "react"; // useStateをインポート
-
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import styles from "./SideMenu.module.css";
 import SideMenuButton from "./SideMenuButton";
 import Settings from "../Settings/Settings";
+import { MenuItem } from "../types";  // 型定義をインポート
 
 type SideMenuProps = {
   isOpen: boolean;
   toggleMenu: () => void;
-
-  onMenuItemClick: (item: string) => void;
+  onMenuItemClick: (item: MenuItem) => void;  // 型を MenuItem に変更
   isExpanded: boolean;
-  setExpanded: (expanded: boolean) => void; // 拡張状態を変更する関数を追加
+  setExpanded: (expanded: boolean) => void;
 };
 
 function SideMenu({ isOpen, toggleMenu, onMenuItemClick, isExpanded, setExpanded }: SideMenuProps): JSX.Element {
@@ -31,7 +29,7 @@ function SideMenu({ isOpen, toggleMenu, onMenuItemClick, isExpanded, setExpanded
     toggleMenu(); // サイドメニューを閉じる
   }
 
-  function handleMenuItemClick(item: string) {
+  function handleMenuItemClick(item: MenuItem) {
     if (item === "Menu Item 1" || item === "Menu Item 2") {
       setGameTitleVisible(false);
       handleToggleMenu();
@@ -40,56 +38,27 @@ function SideMenu({ isOpen, toggleMenu, onMenuItemClick, isExpanded, setExpanded
       setGameTitleVisible((prev) => !prev);
     }
     onMenuItemClick(item);
-
   }
 
   return (
-    <motion.div
-
-      className={`${styles.sideMenu} ${isExpanded ? styles.expanded : ""} ${!isOpen ? styles.hidden : ""}`}
-
-      initial={{ x: "-100%" }}
-      animate={{ x: isOpen ? 0 : "-100%" }}
-      transition={{ type: "spring", stiffness: 300, damping: 30 }}
-    >
-
+    <motion.div className={`${styles.sideMenu} ${isExpanded ? styles.expanded : ""} ${!isOpen ? styles.hidden : ""}`} initial={{ x: "-100%" }} animate={{ x: isOpen ? 0 : "-100%" }} transition={{ type: "spring", stiffness: 300, damping: 30 }}>
       <div className={`${styles.buttonWrapper} ${styles.fixedContent}`}>
         <SideMenuButton toggleMenu={handleToggleMenu} direction="left" />
       </div>
-
       <ul className={`${styles.menuList} ${styles.fixedContent}`}>
-        <li onClick={() => handleMenuItemClick("Menu Item 1")} className={styles.menuItem1}>
-          Menu Item 1
-        </li>
-        <li onClick={() => handleMenuItemClick("Menu Item 2")} className={styles.menuItem2}>
-          Menu Item 2
-        </li>
-        <li onClick={() => handleMenuItemClick("Menu Item 3")} className={styles.menuItem3}>
-          Menu Item 3
-        </li>
+        <li onClick={() => handleMenuItemClick("Menu Item 1")} className={styles.menuItem1}>Menu Item 1</li>
+        <li onClick={() => handleMenuItemClick("Menu Item 2")} className={styles.menuItem2}>Menu Item 2</li>
+        <li onClick={() => handleMenuItemClick("Menu Item 3")} className={styles.menuItem3}>Menu Item 3</li>
       </ul>
-
       {isGameTitleVisible && (
-  <motion.div
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
-    transition={{ duration: 0.5 }}
-    className={`${styles.gameTitle} ${styles.fixedContent}`}
-  >
-    <h3>ゲームタイトル 1</h3>
-    <h3>ゲームタイトル 2</h3>
-    <h3>ゲームタイトル 3</h3>
-    <h3>ゲームタイトル 4</h3>
-  </motion.div>
-)}
-
-
-      {/* Settings ボタンに settingsButton クラスを追加 */}
-      <button onClick={toggleSettings} className={styles.settingsButton}>
-        設定
-      </button>
-
-
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }} className={`${styles.gameTitle} ${styles.fixedContent}`}>
+          <h3>ゲームタイトル 1</h3>
+          <h3>ゲームタイトル 2</h3>
+          <h3>ゲームタイトル 3</h3>
+          <h3>ゲームタイトル 4</h3>
+        </motion.div>
+      )}
+      <button onClick={toggleSettings} className={styles.settingsButton}>設定</button>
       <Settings isOpen={isSettingsOpen} onClose={toggleSettings} />
     </motion.div>
   );
